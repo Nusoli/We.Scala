@@ -3,7 +3,7 @@
 https://www.valtech.fr/
 
 This is an AEM 6.2 sample implementation for Scala developpement in AEM.
-The project in based on the we.retail implementation from Adobe.
+The project is based on the we.retail implementation from Adobe.
 
 ## Modules
 
