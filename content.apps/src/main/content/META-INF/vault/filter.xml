@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/we-scalalib/install/scala-library-2.11.8.jar" />
+    <filter root="/apps/we-scalalib/install/scala-compiler-2.11.8.jar" />
+    <filter root="/apps/we-scala">
+        <exclude pattern="/apps/we-scala/install"/>
+    </filter>
+</workspaceFilter>
