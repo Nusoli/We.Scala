@@ -1,4 +1,4 @@
-package we.scala.core
+package we.scala.core.servlets
 
 import java.io.IOException
 import javax.jcr.Node
@@ -6,10 +6,11 @@ import javax.servlet.ServletException
 
 import org.apache.felix.scr.annotations.sling._
 import org.apache.sling.api.resource.Resource
-import org.apache.sling.api.{SlingHttpServletResponse, SlingHttpServletRequest}
 import org.apache.sling.api.servlets.{OptingServlet, SlingAllMethodsServlet}
+import org.apache.sling.api.{SlingHttpServletRequest, SlingHttpServletResponse}
 import org.apache.sling.commons.json.JSONArray
 import org.slf4j.LoggerFactory
+import we.scala.core.trt.Loggable
 
 //This is used to automatically transform java.util.iterator to scala iterator
 import scala.collection.JavaConversions.asScalaIterator
@@ -22,9 +23,8 @@ import scala.collection.JavaConversions.asScalaIterator
   methods = Array("GET"),
   metatype = true
 )
-class ScalaServlet extends SlingAllMethodsServlet with OptingServlet{
+class ScalaServlet extends SlingAllMethodsServlet with OptingServlet with Loggable{
 
-  val logger = LoggerFactory.getLogger(classOf[ScalaServlet])
   val InstallPath = "/apps/we-scalalib/install"
 
     @throws[ServletException]
@@ -32,7 +32,7 @@ class ScalaServlet extends SlingAllMethodsServlet with OptingServlet{
     override def doGet(request:SlingHttpServletRequest,response:SlingHttpServletResponse) : Unit = {
       import we.scala.core.extenders.Extensions._
 
-      logger.info("ScalaServlet - doGet")
+      info("ScalaServlet - doGet")
       response.setContentType("application/json")
       try{
         val resource:Resource = request.getResourceResolver.getResource(InstallPath)
@@ -44,7 +44,7 @@ class ScalaServlet extends SlingAllMethodsServlet with OptingServlet{
         }
         response.getOutputStream println nodeArrayJSON.toString
       }catch {
-        case e: Exception => logger error e.getMessage;
+        case e: Exception => error(e.getMessage);
       }
     }
 
